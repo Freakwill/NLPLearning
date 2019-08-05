@@ -34,15 +34,12 @@ else:
     model.save('mymodel')
 
 # 进行相关性比较
-
 word = '人民'
-
 words = model.wv.most_similar(word, topn=50)
 words = [word[0] for word in words] + [word]
 
 from sklearn.manifold import TSNE
 X_tsne = TSNE(n_components=2, learning_rate=100).fit_transform(model.wv[words])
-
 
 import matplotlib.pyplot as plt 
 import matplotlib
@@ -56,6 +53,6 @@ for i, Xi in enumerate(X_tsne[:-1]):
     x=Xi[0]
     y=Xi[1]
     plt.text(x, y, words[i],size = 16)
-plt.text(X_tsne[-1][0], X_tsne[-1][1], words[-1], size=18, color='r')
+plt.text(X_tsne[-1,0], X_tsne[-1,1], words[-1], size=18, color='r')
 plt.title(f'中心词：{word}')
 plt.show()
