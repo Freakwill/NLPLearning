@@ -4,6 +4,9 @@
 import pathlib
 from gensim.models import word2vec
 
+# input the path of corpus
+PATH = pathlib.Path('~/Folders/mycorpus/xxqg').expanduser()
+
 # 构建模型
 model_path = pathlib.Path('mymodel')
 if model_path.exists():
@@ -15,8 +18,7 @@ else:
     jieba.setLogLevel(logging.INFO)
 
     import readany
-    PATH = pathlib.Path('~/Folders/mycorpus').expanduser()
-    s = readany.read(PATH / 'xxqg')
+    s = readany.read(PATH)
 
     def cut_flag(s):  
         return [f'{word_flag.word}/{word_flag.flag}' for word_flag in words]
